@@ -21,6 +21,7 @@ jobs:
         run: npm ci
       - name: Build application
         run: npm run build
-      - name: Deploy to S3
+      - name: Delete S3 files
         run: aws s3 sync --delete ./dist/ s3://${{ secrets.BUCKET_ID }}
+      - name: Deploy to S3
         run: aws s3 sync ./dist/ s3://${{ secrets.BUCKET_ID }}
